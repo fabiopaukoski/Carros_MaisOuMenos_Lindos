@@ -4,25 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
-    <title>Carros Mais ou Menos Lindos</title>
+    <link rel="stylesheet" href="TelaPrincipal.css"> 
+    <title>Carros Mais ou Menos Lindos</title>  
 </head>
 
 <body>
-    <header>
-        <h1>Nav</h1>
-    </header>
+    <nav class="header-nav">
+        <header>
+            <h1>Carros Mais ou Menos Lindos</h1>
+        </header>
+    </nav>
+    <nav class="navegação">
+        <ul class="menu">
+            <li>
+                <a href="login.html">Login</a>
+            </li>
+            <li>
+                <a href="#">Início</a>
+            </li>
+            <li>
+                <a href="#modelos">Modelos</a>
+            </li>
+            <li>
+                <a href="#sobre">Sobre</a>
+            </li>
+            <li>
+                <a href="#contato">Contato</a>
+            </li>
+        </ul>     
+    </nav>
+        
 
-
-    <div id="login">
-        <h3>login</h3>
-        <form action="login">
-            <input type="email" id="email" placeholder="Digite seu E-mail" required>
-            <br>
-            <input type="password" id="pw" placeholder="Digite sua senha" required>
-            <br>
-            <button class="btn btn-primary" type="submit"> ENTRAR</button>
-    </div>
     <div id="carros" class="container-md">
         <div id="carroA">
             <h3>Red Devil</h3>
