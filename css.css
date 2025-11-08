@@ -1,0 +1,12 @@
+* {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: 0.2s linear;
+}
+.container-md {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
