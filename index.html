@@ -2,87 +2,198 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="TelaPrincipal.css"> 
-    <title>Carros Mais ou Menos Lindos</title>  
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="TelaPrincipal.css">
+	<title>Carros Mais ou Menos Lindos</title>
 </head>
 
 <body>
-    <nav class="header-nav">
-                <header>
-                    <h1>Carros Mais ou Menos Lindos</h1>
-                </header>
-            </nav>
-    <nav class="navegacao">
-        <ul class="menu">
-            <li>
-                <a href="#" class="menu-link">Início</a>
-            </li>
-            <li>
-                <a href="#modelos" class="menu-link">Modelos</a>
-            </li>
-            <li>
-                <a href="#sobre" class="menu-link">Sobre</a>
-            </li>
-            <li>
-                <a href="#contato" class="menu-link">Contato</a>
-            </li>
-            <li>
-                <a href="login.html" class="menu-link">Login</a>
-            </li>
-        </ul>     
-    </nav>
-        
+	<header>
+		<nav class="navegacao">
+			<!-- meu logo/ título do site (fica à esquerda) -->
+			<h1 class="header-nav">Carros Mais ou Menos Lindos</h1>
 
-    <div id="carros" class="container-md">
-        <div id="carroA">
-            <h3>Red Devil</h3>
-            <img src="Mídia/OIP (2).webp" alt="Devil">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nisi et quasi, reiciendis ipsa animi non
-                excepturi eveniet nam, vero numquam praesentium fugit facere nesciunt error hic. Minima, consequuntur.
-                Blanditiis!</p>
+			<!-- controle do menu mobile (checkbox + label) -->
+			<input type="checkbox" id="menu-toggle" />
+			<label for="menu-toggle" class="hamburger" aria-label="Abrir menu">
+				<span></span><span></span><span></span>
+			</label>
 
-        </div>
-        <div id="carroB">
-            <h3>Banenunm VSSI</h3>
-            <img src="Mídia/b.jpg" alt="Banenunm">
-            <P>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente quos nulla cumque ex magni deserunt.
-                Earum dolore quis soluta, natus amet tenetur explicabo nisi deleniti optio cumque totam quia architecto.
-            </P>
-        </div>
-        <div id="carroC">
-            <h3>Doggus v3</h3>
-            <img src="Mídia/OIP.webp" alt="Doggus v3">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci soluta unde, mollitia quo saepe
-                doloribus ducimus. Provident, adipisci. Accusantium ratione tempore facere sint quod minima animi odio
-                assumenda error nam?</p>
-        </div>
-        <div id="carroD">
-            <h3>Blitz Walker</h3>
-            <img src="Mídia/OIP (1).webp" alt="Blitz">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod molestiae earum, hic maiores dignissimos
-                velit rerum soluta itaque necessitatibus dolores placeat fuga corrupti possimus sunt minima temporibus
-                vel, dolor non?
-            </p>
-        </div>
-        <div id="carroE">
-            <h3>Gato M.I.A 002</h3>
-            <img src="Mídia/R.jpg" alt="GatoMia">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde id labore facilis perspiciatis voluptatem
-                repellat odit vel ipsum quibusdam quam, odio aperiam inventore provident qui autem asperiores officia
-                nisi a.</p>
-        </div>
-        <div id="carroF">
-            <h3>PorCOMBI</h3>
-            <img src="Mídia/p.jpg" alt="PorCOMBI">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore aliquam dolore pariatur vitae ducimus
-                magni, iusto veniam porro animi architecto mollitia fugit quam quidem quis beatae soluta! Quam, eligendi
-                aut.</p>
-        </div>
-    </div>
+			<!-- menu central (links principais) -->
+			<ul class="menu">
+				<li><a href="#" class="menu-link">Início</a></li>
+				<li><a href="#modelos" class="menu-link">Modelos</a></li>
+				<li><a href="#sobre" class="menu-link">Sobre</a></li>
+				<li><a href="#contato" class="menu-link">Contato</a></li>
+			</ul>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js"></script>
+			<!-- botão do carrinho (contagem à direita) -->
+			<button id="cart-button" class="cart-button" aria-label="Abrir carrinho">
+				<span class="cart-icon">🛒</span>
+				<span id="cart-count" class="cart-badge">0</span>
+			</button>
+		</nav>
+	</header>
+
+	<main>
+
+		<!-- seção Modelos: descrição rápida -->
+		<section id="modelos" class="secao-modelos" aria-label="Modelos">
+			<div class="container">
+				<h2>Modelos</h2>
+				<!-- subtítulo curto para orientar o visitante -->
+				<p class="subtitulo">Explore nossos modelos disponíveis.</p>
+			</div>
+		</section>
+
+		<!-- produtos: mantive os artigos originais, cada um com botão adicionar/saiba mais -->
+		<section id="produtos" class="produtos-container" aria-label="Lista de carros">
+			<article class="produto" id="carroA" role="article" data-name="Red Devil" data-type="esportivo">
+				<img src="Mídia/OIP (2).webp" alt="Devil">
+				<h3 class="nome">Red Devil</h3>
+				<p class="descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nisi et quasi, reiciendis ipsa animi non excepturi eveniet nam, vero numquam praesentium fugit facere nesciunt error hic. Minima, consequuntur. Blanditiis!</p>
+				<div class="produto-acoes">
+					<button class="btn adicionar" data-id="carroA">Adicionar ao carrinho</button>
+					<button class="btn saiba-mais" data-id="carroA">Saiba mais</button>
+				</div>
+			</article>
+
+			<article class="produto" id="carroB" role="article" data-name="Banenunm VSSI" data-type="conceitual">
+				<img src="Mídia/b.jpg" alt="Banenunm">
+				<h3 class="nome">Banenunm VSSI</h3>
+				<p class="descricao">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente quos nulla cumque ex magni deserunt. Earum dolore quis soluta, natus amet tenetur explicabo nisi deleniti optio cumque totam quia architecto.</p>
+				<div class="produto-acoes">
+					<button class="btn adicionar" data-id="carroB">Adicionar ao carrinho</button>
+					<button class="btn saiba-mais" data-id="carroB">Saiba mais</button>
+				</div>
+			</article>
+
+			<article class="produto" id="carroC" role="article" data-name="Doggus v3" data-type="compacto">
+				<img src="Mídia/OIP.webp" alt="Doggus v3">
+				<h3 class="nome">Doggus v3</h3>
+				<p class="descricao">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci soluta unde, mollitia quo saepe doloribus ducimus. Provident, adipisci. Accusantium ratione tempore facere sint quod minima animi odio assumenda error nam?</p>
+				<div class="produto-acoes">
+					<button class="btn adicionar" data-id="carroC">Adicionar ao carrinho</button>
+					<button class="btn saiba-mais" data-id="carroC">Saiba mais</button>
+				</div>
+			</article>
+
+			<article class="produto" id="carroD" role="article" data-name="Blitz Walker" data-type="suv">
+				<img src="Mídia/OIP (1).webp" alt="Blitz">
+				<h3 class="nome">Blitz Walker</h3>
+				<p class="descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod molestiae earum, hic maiores dignissimos velit rerum soluta itaque necessitatibus dolores placeat fuga corrupti possimus sunt minima temporibus vel, dolor non?</p>
+				<div class="produto-acoes">
+					<button class="btn adicionar" data-id="carroD">Adicionar ao carrinho</button>
+					<button class="btn saiba-mais" data-id="carroD">Saiba mais</button>
+				</div>
+			</article>
+
+			<article class="produto" id="carroE" role="article" data-name="Gato M.I.A 002" data-type="urbano">
+				<img src="Mídia/R.jpg" alt="GatoMia">
+				<h3 class="nome">Gato M.I.A 002</h3>
+				<p class="descricao">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde id labore facilis perspiciatis voluptatem repellat odit vel ipsum quibusdam quam, odio aperiam inventore provident qui autem asperiores officia nisi a.</p>
+				<div class="produto-acoes">
+					<button class="btn adicionar" data-id="carroE">Adicionar ao carrinho</button>
+					<button class="btn saiba-mais" data-id="carroE">Saiba mais</button>
+				</div>
+			</article>
+
+			<article class="produto" id="carroF" role="article" data-name="PorCOMBI" data-type="van">
+				<img src="Mídia/p.jpg" alt="PorCOMBI">
+				<h3 class="nome">PorCOMBI</h3>
+				<p class="descricao">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore aliquam dolore pariatur vitae ducimus magni, iusto veniam porro animi architecto mollitia fugit quam quidem quis beatae soluta! Quam, eligendi aut.</p>
+				<div class="produto-acoes">
+					<button class="btn adicionar" data-id="carroF">Adicionar ao carrinho</button>
+					<button class="btn saiba-mais" data-id="carroF">Saiba mais</button>
+				</div>
+			</article>
+		</section>
+
+		<!-- seção Sobre: texto e cartões (missão/visão/valores) -->
+		<section id="sobre" class="secao-sobre" aria-label="Sobre">
+			<div class="container">
+				<h2>Sobre Nós</h2>
+				<!-- resumo direto e honesto sobre a loja -->
+				<p>Somos uma equipe de entusiastas que ama automóveis. Selecionamos modelos com personalidade e oferecemos atendimento honesto para ajudar você a encontrar o carro certo.</p>
+				<div class="missao-visao">
+					<!-- cartões: deixei organizados para serem lidos facilmente -->
+					<div>
+						<h4>Missão</h4>
+						<p>Conectar pessoas a veículos que combinam com seu estilo, garantindo transparência e suporte durante toda a compra.</p>
+					</div>
+					<div>
+						<h4>Visão</h4>
+						<p>Ser referência local em modelos diferenciados e em atendimento personalizado.</p>
+					</div>
+					<div>
+						<h4>Valores</h4>
+						<p>Transparência, respeito e paixão por automóveis.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- contato: formulário simples, manutenção do markup original -->
+		<section id="contato" class="secao-contato" aria-label="Contato">
+			<div class="container">
+				<h2>Contato</h2>
+				<p>Envie sua mensagem e responderemos em breve.</p>
+
+				<form id="form-contato" class="form-contato" novalidate>
+					<label for="nome">Nome</label>
+					<input id="nome" name="nome" type="text" required placeholder="Seu nome">
+
+					<label for="email">Email</label>
+					<input id="email" name="email" type="email" required placeholder="seu@exemplo.com">
+
+					<label for="mensagem">Mensagem</label>
+					<textarea id="mensagem" name="mensagem" rows="5" required placeholder="Escreva sua mensagem"></textarea>
+
+					<div class="form-actions">
+						<button type="submit" class="btn">Enviar</button>
+						<button type="reset" class="btn fechar">Limpar</button>
+					</div>
+
+					<p id="form-feedback" class="form-feedback" aria-live="polite"></p>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<!-- Painel lateral do carrinho -->
+	<aside id="cart-drawer" class="cart-drawer" aria-hidden="true">
+		<header class="cart-header">
+			<h4>Seu Carrinho</h4>
+			<button id="close-cart" class="btn fechar">Fechar</button>
+		</header>
+		<ul id="cart-items" class="cart-items"></ul>
+		<footer class="cart-footer">
+			<span id="cart-total">Total: R$ 0,00</span>
+			<button id="checkout" class="btn">Finalizar Compra</button>
+		</footer>
+	</aside>
+
+	<!-- Modal "Saiba mais" simples -->
+	<div id="modal" class="modal" aria-hidden="true">
+		<div class="modal-conteudo">
+			<button id="modal-close" class="btn fechar">Fechar</button>
+			<img id="modal-img" src="" alt="" />
+			<h3 id="modal-titulo"></h3>
+			<p id="modal-descricao"></p>
+		</div>
+	</div>
+
+	<!-- script principal (já contém API mínima para integração) -->
+	<script src="index.js"></script>
+
+	<!--
+		Se for adicionar JS extra:
+		- Recomendo usar a API pública window.App (ex.: window.App.addToCart(...))
+	-->
+
+	<!-- bootstrap opcional -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js"></script>
 </body>
 
 </html>
