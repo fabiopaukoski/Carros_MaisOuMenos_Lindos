@@ -1,0 +1,496 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;500;700&display=swap");
+
+/* Variáveis principais: cores, espaçamento e transições (organizei aqui para facilitar ajustes) */
+:root {
+	--bg0: #020024;
+	--bg1: #0000b5;
+	--bg2: #7300bf;
+	--tx: #ebebeb;
+	--muted: rgba(235, 235, 235, 0.78);
+	--p: #ff0055;
+	--s: #ffb700;
+	--glass: rgba(255, 255, 255, 0.03);
+	--blur: 8px;
+	--shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+	--r: 10px;
+	--nav-h: 68px;
+	--gap: 1.5rem;
+	--ease: 220ms cubic-bezier(0.2, 0.9, 0.3, 1);
+	--base: 16px;
+}
+
+/* Reset leve e remoção de decorações padrão (listas, links) — deixei aqui para o projeto inteiro */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	list-style: none;
+	text-decoration: none;
+}
+html {
+	scroll-behavior: smooth;
+}
+
+/* Corpo: fundo com gradiente e espaço para navbar fixa */
+body {
+	font-size: var(--base);
+	line-height: 1.6;
+	color: var(--tx);
+	background: linear-gradient(207deg, var(--bg0), var(--bg1) 50%, var(--bg2));
+	-webkit-font-smoothing: antialiased;
+	padding-top: var(--nav-h);
+}
+
+/* NAVBAR: logo | menu central | carrinho
+   Comentários curtos para lembrar a intenção do layout. */
+.navegacao {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: var(--nav-h);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.9rem 1.25rem;
+	background: linear-gradient(
+		180deg,
+		rgba(18, 18, 18, 0.6),
+		rgba(18, 18, 18, 0.45)
+	);
+	backdrop-filter: blur(var(--blur));
+	box-shadow: var(--shadow);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+	z-index: 1000;
+}
+.header-nav {
+	font-family: "Bebas Neue", "Poppins", sans-serif;
+	color: var(--s);
+	font-size: 1.15rem;
+}
+
+/* Menu centralizado usando absolute para ficar entre logo e carrinho */
+.menu {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	gap: 2.2rem;
+	align-items: center;
+	z-index: 105;
+	pointer-events: auto;
+}
+.menu-link {
+	color: var(--tx);
+	font-weight: 500;
+	position: relative;
+	padding: 0.4rem 0;
+	transition: transform var(--ease);
+}
+.menu-link::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 2px;
+	bottom: -3px;
+	background: linear-gradient(30deg, var(--p), var(--s));
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.36s;
+}
+.menu-link:hover {
+	transform: translateY(-4px);
+}
+.menu-link:hover::after {
+	transform: scaleX(1);
+}
+.menu-link.active {
+	color: var(--s);
+	font-weight: 600;
+}
+
+/* Ícone hambúrguer (visível em mobile) */
+#menu-toggle {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+.hamburger {
+	display: none;
+	position: relative;
+	width: 42px;
+	height: 34px;
+	cursor: pointer;
+}
+.hamburger span {
+	display: block;
+	height: 3px;
+	background: var(--tx);
+	margin: 6px 0;
+	border-radius: 3px;
+	transition: all 0.22s;
+}
+
+/* Carrinho: botão com badge de contagem */
+.cart-button {
+	background: transparent;
+	border: 0;
+	color: var(--tx);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	z-index: 1100;
+}
+.cart-badge {
+	background: var(--s);
+	color: #111;
+	padding: 0.06rem 0.45rem;
+	border-radius: 999px;
+	font-weight: 700;
+	font-size: 0.78rem;
+}
+
+/* Produtos: grid responsivo (3 colunas) — central, espaçado e fluido */
+.produtos-container {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(220px, 1fr));
+	gap: var(--gap);
+	padding-top: calc(var(--nav-h) +1rem);
+}
+@media (max-width: 1000px) {
+	.produtos-container {
+		grid-template-columns: repeat(2, minmax(220px, 1fr));
+	}
+}
+@media (max-width: 600px) {
+	.produtos-container {
+		grid-template-columns: 1fr;
+		padding-inline: 1rem;
+	}
+}
+
+/* Card de produto: vidro leve, sombra, borda sutil — foco na imagem e nome */
+.produto {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.02),
+		rgba(255, 255, 255, 0.01)
+	);
+	border-radius: var(--r);
+	border: 1px solid rgba(255, 255, 255, 0.04);
+	box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem;
+	transition:
+		transform 0.26s,
+		box-shadow 0.26s;
+	max-width: 320px;
+	width: 100%;
+}
+.produto img {
+	width: 100%;
+	height: 160px;
+	object-fit: cover;
+	border-radius: 6px;
+}
+.produto .nome {
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
+	color: var(--tx);
+	margin-top: 0.25rem;
+}
+.produto .descricao {
+	color: var(--muted);
+	font-size: 0.95rem;
+	margin-bottom: 0.25rem;
+}
+.produto:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+	border-color: rgba(255, 183, 0, 0.14);
+}
+
+/* Ações dos cards (Adicionar / Saiba mais) */
+.produto-acoes {
+	display: flex;
+	gap: 0.6rem;
+	margin-top: 0.5rem;
+	width: 100%;
+	justify-content: center;
+}
+.btn {
+	background: linear-gradient(90deg, var(--p), var(--s));
+	color: #fff;
+	border: 0;
+	padding: 0.45rem 0.75rem;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: 600;
+	transition:
+		transform 0.16s,
+		box-shadow 0.16s;
+}
+.btn.fechar {
+	background: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	color: var(--tx);
+}
+.btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Modelos: apenas título e subtítulo (fácil de ler) */
+.secao-modelos {
+	padding: 1.6rem 1rem;
+	text-align: center;
+}
+
+/* Modal e drawer: transições e conteúdo pronto para JS gerenciar (index.js) */
+.modal,
+.cart-drawer {
+	transition: all 0.3s;
+}
+.modal {
+	position: fixed;
+	inset: 0;
+	display: none;
+	place-content: center;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 1300;
+}
+.modal.open {
+	display: grid;
+}
+.modal-conteudo {
+	background: linear-gradient(
+		180deg,
+		rgba(18, 18, 18, 0.98),
+		rgba(12, 12, 12, 0.96)
+	);
+	padding: 1rem;
+	border-radius: 10px;
+	color: var(--tx);
+	max-width: 700px;
+	width: 92%;
+}
+.cart-drawer {
+	position: fixed;
+	right: -420px;
+	top: 0;
+	height: 100%;
+	width: 380px;
+	background: linear-gradient(
+		180deg,
+		rgba(20, 20, 20, 0.98),
+		rgba(10, 10, 10, 0.96)
+	);
+	box-shadow: -24px 0 40px rgba(0, 0, 0, 0.6);
+	z-index: 1200;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+}
+.cart-drawer.open {
+	right: 0;
+}
+
+/* Itens do carrinho: lista compacta, isso aqui eu fiz ia pq não tinha o JS... */
+.cart-items {
+	padding: 0;
+	margin: 0;
+	overflow: auto;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+}
+.cart-item {
+	display: flex;
+	gap: 0.6rem;
+	align-items: center;
+	padding: 0.45rem;
+	background: rgba(255, 255, 255, 0.02);
+	border-radius: 6px;
+}
+.cart-item img {
+	width: 64px;
+	height: 48px;
+	object-fit: cover;
+	border-radius: 4px;
+}
+
+/* Formulário: campos com estilo neutro e legível */
+.form-contato {
+	max-width: 700px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 0.55rem;
+}
+.form-contato input,
+.form-contato textarea {
+	padding: 0.6rem;
+	border-radius: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.04);
+	background: rgba(255, 255, 255, 0.02);
+	color: var(--tx);
+}
+.form-feedback {
+	margin-top: 0.6rem;
+	font-weight: 600;
+}
+
+/* Sobre: cartões com destaque, leitura fácil e responsividade */
+.secao-sobre {
+	padding: 3rem 1rem;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
+}
+.secao-sobre .container {
+	max-width: 1100px;
+	margin: 0 auto;
+	text-align: center;
+}
+.secao-sobre > .container > p,
+.secao-sobre .subtitulo {
+	max-width: 880px;
+	margin: 0 auto 1.25rem;
+	color: var(--muted);
+	font-size: 1rem;
+	line-height: 1.6;
+}
+.missao-visao {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+	margin-top: 1rem;
+	align-items: start;
+}
+.missao-visao > div {
+	background: rgba(255, 255, 255, 0.02);
+	padding: 1.1rem;
+	border-radius: 10px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+	text-align: left;
+	min-height: 140px;
+	position: relative;
+	overflow: hidden;
+}
+.missao-visao > div::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 6px;
+	width: 48px;
+	background: linear-gradient(90deg, var(--p), var(--s));
+	border-bottom-right-radius: 6px;
+}
+.missao-visao h4 {
+	margin: 0 0 0.5rem;
+	color: var(--p);
+	font-family: "Poppins", sans-serif;
+	font-size: 1.05rem;
+}
+.secao-sobre .missao-visao p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 0.95rem;
+	line-height: 1.5;
+}
+@media (max-width: 900px) {
+	.missao-visao {
+		grid-template-columns: 1fr;
+	}
+	.secao-sobre {
+		padding: 2rem 1rem;
+	}
+}
+
+/* Tipografia das seções */
+main h2,
+.secao-modelos h2,
+.secao-sobre h2,
+.secao-contato h2 {
+	font-family: "Bebas Neue", "Poppins", sans-serif;
+	color: var(--s);
+	text-align: center;
+	margin: 0.4rem 0 0.8rem;
+	font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+h3,
+.produto .nome {
+	font-family: "Poppins", sans-serif;
+	text-align: center;
+	color: var(--tx);
+	margin: 0.25rem 0;
+}
+
+/* Acessibilidade e utilidades visuais */
+.menu-link:focus-visible,
+.btn:focus-visible {
+	outline: none;
+	box-shadow:
+		0 6px 20px rgba(0, 0, 0, 0.45),
+		0 0 0 4px rgba(255, 183, 0, 0.06);
+}
+::selection {
+	background: rgba(255, 183, 0, 0.14);
+	color: var(--tx);
+}
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 0, 85, 0.18),
+		rgba(255, 183, 0, 0.18)
+	);
+	border-radius: 8px;
+}
+@media (max-width: 700px) {
+	.hamburger {
+		display: block;
+	}
+	.menu {
+		position: static;
+		transform: none;
+		display: none;
+		flex-direction: column;
+		gap: 0.9rem;
+		top: calc(100%);
+		left: 0;
+		right: 0;
+		background: linear-gradient(
+			180deg,
+			rgba(18, 18, 18, 0.96),
+			rgba(18, 18, 18, 0.98)
+		);
+		padding: 1rem 1.2rem;
+		border-bottom-left-radius: 8px;
+		border-bottom-right-radius: 8px;
+		z-index: 106;
+	}
+	#menu-toggle:checked ~ .menu {
+		display: flex;
+	}
+	.cart-drawer {
+		width: 100%;
+		right: -100%;
+	}
+	.cart-button {
+		right: 0.6rem;
+	}
+}
